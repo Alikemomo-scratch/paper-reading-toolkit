@@ -31,12 +31,12 @@ Start with the answer, not setup:
 - Use short bold section headings, usually 1-6 Chinese characters or 1-3 English words.
 - Put the strongest conclusion first, then evidence, then caveats.
 - Bold only labels, key claims, and contrastive terms; do not bold whole paragraphs.
-- Use `inline code` for identifiers, commands, paths, filenames, formulas, model names when precision matters.
+- Use `inline code` for paper IDs, dataset names, model names, formulas, and technical terms when precision matters.
 - Use tables only for comparisons with at least three rows or multiple attributes.
 - Use numbered lists for sequences or ranked priorities; use bullets for unordered points.
 - Keep paragraphs short. Split when a paragraph carries more than one idea.
 - Avoid decorative formatting, emoji, ASCII art, nested bullets, and gratuitous blockquotes.
-- Preserve code blocks, citations, formulas, and exact source wording when they matter.
+- Preserve citations, formulas, tables, and exact source wording when they matter.
 
 ## Paper And Research Template
 
@@ -67,24 +67,6 @@ For papers, PDFs, arXiv links, research notes, or literature discussion, prefer:
 
 When used together with `deep-dive`, keep that skill's required items (`一句话总结`, `核心方法`, `与已有知识的关联`, `初步印象`) and make them visually clearer rather than replacing them.
 
-## Technical Answer Template
-
-For engineering or code-oriented answers, prefer:
-
-```markdown
-**结论**
-
-**改了什么**
-
-**为什么这样做**
-
-**验证**
-
-**风险/后续**
-```
-
-Use file links and command outputs only when they help the user act.
-
 ## Judgment
 
-If the user asks for a raw answer, a minimal answer, exact text, JSON, code, a commit message, or a specific format, follow that format instead. Beautification should never make the answer longer, vaguer, or less faithful.
+If the user asks for a raw answer, a minimal answer, exact text, JSON, or a specific format, follow that format instead. Beautification should never make the answer longer, vaguer, or less faithful.

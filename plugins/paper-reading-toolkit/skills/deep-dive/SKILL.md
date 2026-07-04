@@ -6,7 +6,7 @@ description: Primary entrypoint for Paper Reading Toolkit. Use when the user ask
 # Deep Dive
 
 Use a three-phase workflow: Read, Discuss, Archive. This skill depends on
-`memory-management` for Obsidian note writing rules.
+`memory-management` for Academic Research note writing rules.
 
 ## Memory First
 

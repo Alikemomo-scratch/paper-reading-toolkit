@@ -5,7 +5,7 @@ This directory is the plugin payload used by the root marketplace.
 Paper Reading Toolkit provides a paper-reading workflow for Codex:
 
 - `deep-dive` is the entrypoint for reading, discussing, critiquing, Memory First retrieval, and preparing paper archives.
-- `memory-management` writes durable Markdown notes to the configured Obsidian vault.
+- `memory-management` writes durable Academic Research Markdown notes to the configured Obsidian vault.
 - `beautify-output` restructures dense paper explanations into clearer Markdown.
 
 There is intentionally no separate orchestration skill. Use `deep-dive` directly; its skill instructions include the Memory First behavior.

@@ -1,154 +1,84 @@
 ---
 name: memory-management
-description: Use when durable memory should be retrieved or written in the user's Obsidian vaults, including project decisions, Trellis/OpenSpec-derived project insights, debugging lessons, explicit remember requests, paper discussions, research insights, and cross-session knowledge.
+description: Retrieve or write durable academic memory in the user's Obsidian Academic Research vault, including paper discussions, concept notes, formulas, literature insights, research questions, and explicit archive or remember requests.
 ---
 
 # Memory Management
 
-Durable personal and cross-project memory is stored only as Obsidian-compatible
-Markdown files. Do not use OpenCode journals, QMD, embeddings, vector indexes,
-or memory block tools as durable memory.
+Use this skill only for academic and paper-reading memory. Durable memory is
+stored as Obsidian-compatible Markdown in the Academic Research vault.
 
-Trellis and OpenSpec are separate project-local sources of truth. Do not mirror
-all Trellis/OpenSpec content into Obsidian. Use Obsidian for reasoning,
-decisions, lessons, and cross-project knowledge that will matter after the
-current task or change is gone.
+## Vault
 
-## Vaults
+Resolve the Academic Research vault in this order:
 
-Resolve vault paths in this order:
+1. `PAPER_READING_OBSIDIAN_VAULT`
+2. `~/Documents/Obsidian/Academic Research/`
 
-1. If `PAPER_READING_OBSIDIAN_VAULT` is set, use it for Academic Research.
-2. Otherwise use `~/Documents/Obsidian/Academic Research/` for Academic Research.
-3. If code-project memory is needed, use `PROJECT_DEVELOPMENT_OBSIDIAN_VAULT`
-   when set; otherwise use `~/Documents/Obsidian/Project Development/`.
-4. If the selected vault does not exist and the user has not asked to create it,
-   ask before writing outside the current workspace.
-
-- Project development: `PROJECT_DEVELOPMENT_OBSIDIAN_VAULT` or `~/Documents/Obsidian/Project Development/`
-- Academic research: `PAPER_READING_OBSIDIAN_VAULT` or `~/Documents/Obsidian/Academic Research/`
-
-Each vault should use:
+Expected structure:
 
 - `00 - Maps of Content/` for MOCs and indexes
-- `10 - Knowledge/` for durable notes
+- `10 - Knowledge/_论文/` for paper notes
+- `10 - Knowledge/_概念/` for concept, method, formula, and theme notes
 
-Writing to these vaults is outside the current workspace and may require
-approval. Request a narrow filesystem-write approval before writing when needed.
+Writing to the vault may be outside the current workspace. Request a narrow
+filesystem-write approval before creating or updating notes when needed.
 
-## Code Project Boundary
+## Retrieve
 
-Use Trellis for code project work when a repo has `.trellis/` or the user is
-working in a Trellis/Qoder-style task flow:
+Retrieve context when a paper, method, concept, formula, research theme, or
+archive request is mentioned.
 
-- active task state
-- PRD, requirements, non-goals, and acceptance criteria
-- project specs
-- implement/check context
-- task archive and finish-work journal
+Before answering:
 
-Use OpenSpec for code project work when the repo is explicitly OpenSpec-backed:
+1. Search exact paper matches by title, arXiv ID, DOI, filename, and common abbreviations.
+2. Search related concept or method notes using keywords from the title, abstract, user prompt, and cited methods.
+3. Read at most 1-3 relevant notes or targeted sections.
+4. Prefer high-signal snippets over dumping whole notes into context.
+5. If an exact paper note already exists, ask whether to update it or start a fresh reading thread.
 
-- requirements and behavior contracts
-- change proposals and task lists
-- acceptance criteria and validation plans
-- spec deltas and stable project-local conventions
-- project-local implementation constraints
+Do not announce retrieval unless it changes the answer or the user asks what was found.
 
-Use Obsidian Project Development for:
+## Write
 
-- why a project decision was made
-- alternatives considered and rejected
-- non-obvious bug root causes
-- cross-project reusable lessons
-- architecture rationale
-- durable project conventions and patterns
+Write or update Academic Research notes when:
 
-If a learning belongs in both places, write the normative rule or acceptance
-criterion to Trellis/OpenSpec and the reasoning chain to Obsidian Project
-Development. Cross-link or mention the Trellis task path or OpenSpec change id
-in the Obsidian note when useful.
+- The user asks to archive, save, or remember a paper discussion.
+- A paper discussion produces durable insights, objections, comparisons, or research questions.
+- A concept, formula, method, dataset, benchmark, or literature theme should be reusable later.
+- A research synthesis should become a durable Markdown note.
 
-## Academic Boundary
+Skip transient chat notes, rough scratch work, and claims that have not been
+settled enough to be useful later.
 
-Do not route Trellis tasks, Trellis journals, code project PRDs, or finish-work
-outputs into Academic Research. Do not let Trellis change paper notes, concept
-notes, formula rules, research reports, or Academic Research MOCs.
+## Paper Notes
 
-Academic Research remains governed by `deep-dive`, compatible external research
-skills such as `Weizhena/Deep-Research-skills`, and related academic memory rules.
+For paper notes, preserve:
 
-## When To Retrieve
+- title, authors, venue/year when known, URL or arXiv ID, and tags
+- one-sentence summary
+- problem setting
+- core method
+- model structure, data flow, and training objective when relevant
+- key experiments or evidence
+- limitations and weak claims
+- connections to existing notes
+- user discussion insights and open questions
 
-Silently evaluate retrieval triggers at the start of each task:
+Do not leave discussion sections generic. Capture the concrete viewpoint that
+emerged from the conversation.
 
-- Known project, tech stack, Trellis task, OpenSpec change, paper, method, or
-  concept is mentioned.
-- A debugging session starts.
-- The user asks about prior decisions, preferences, or remembered context.
-- Academic content, literature, or research direction is discussed.
-- A non-trivial code project implementation task is about to use Trellis or
-  OpenSpec.
+## Concept Notes
 
-Retrieval rule:
+For concept, method, formula, or theme notes, preserve:
 
-1. If Trellis is relevant, first identify the active task and read only relevant
-   PRD, task state, spec/check context, and workflow state.
-2. If OpenSpec is relevant, first identify and read the active change/spec files.
-3. For code projects, read the relevant Project Development MOC/index note.
-4. Search filenames and contents to narrow candidates.
-5. Read at most 1-3 relevant notes or targeted sections.
-6. Reuse retrieved context within the same session.
-7. Ask the user to narrow scope if results are broad.
+- definition or working description
+- where the idea appears
+- why it matters
+- related papers or notes
+- unresolved questions
 
-Do not announce retrieval unless it affects the answer or the user asks.
+## MOC
 
-## When To Write
-
-Write durable Obsidian memory when content has cross-session reuse value:
-
-- User explicitly asks to remember something.
-- A project architecture, technology, workflow, or design decision is confirmed.
-- A non-obvious bug fix or debugging lesson is completed.
-- A Trellis/OpenSpec-backed task produces reusable rationale or project lessons.
-- A project convention, linter, formatter, CI, or workflow rule changes.
-- A paper discussion yields useful viewpoints, objections, or research questions.
-- A research synthesis should become durable.
-
-Skip temporary scratch context and task-local facts that belong only in the
-current Trellis task, Trellis journal, or OpenSpec change.
-
-## Finish Routing
-
-At the end of substantial code project implementation or review work, produce:
-
-```text
-Trellis updates:
-- stable project-local spec/task/check/journal update, or "none"
-
-OpenSpec updates:
-- stable project-local rule/spec/acceptance change, or "none"
-
-Obsidian Project Development updates:
-- durable reasoning/decision/lesson to record, or "none"
-
-No-write notes:
-- task-local facts intentionally not persisted, or "none"
-```
-
-Write only after the route is clear. Trellis/OpenSpec updates happen in the
-repo. Obsidian Project Development updates may require filesystem approval.
-
-This finish routing is for code project development only. Academic Research
-workflows keep their existing archive behavior.
-
-## Routing
-
-- Project Development: repository behavior, implementation decisions, workflows,
-  Trellis/OpenSpec-derived insights, debugging lessons, conventions, and
-  reusable engineering knowledge.
-- Academic Research: paper discussions, concepts, literature insights, research
-  questions, and research synthesis.
-
-If ambiguous, choose based on the future audience. Ask only when routing affects
-where the user will look later.
+When writing a durable note, update the relevant Academic Research MOC or index
+entry. Keep links concise and avoid duplicate entries.

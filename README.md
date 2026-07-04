@@ -2,12 +2,12 @@
 
 Paper Reading Toolkit is a Codex plugin marketplace for academic paper reading. It gives Codex a lightweight framework that can install the paper-reading plugin, prepare Obsidian, read a paper, connect it to existing notes, discuss the paper with you, and archive the final understanding back into your configured Obsidian vault.
 
-The runtime entrypoint is intentionally simple: use `deep-dive`. There is no separate orchestration skill. Memory First retrieval is built into `deep-dive`; `memory-management` handles durable Obsidian notes; `beautify-output` makes dense explanations easier to scan.
+The runtime entrypoint is intentionally simple: use `deep-dive`. There is no separate orchestration skill. Memory First retrieval is built into `deep-dive`; `memory-management` handles durable Academic Research notes; `beautify-output` makes dense explanations easier to scan.
 
 The framework does three things well:
 
 1. `deep-dive` handles paper reading, critique, discussion, Memory First retrieval, and archive preparation.
-2. `memory-management` handles durable Obsidian Markdown notes and vault routing.
+2. `memory-management` handles durable Academic Research Markdown notes and vault routing.
 3. `beautify-output` makes dense paper explanations easier to scan without deleting substance.
 
 ## One-Click Install
@@ -135,7 +135,7 @@ Polish the output:
 
 For structured benchmark, market, or literature research, use this plugin together with [Weizhena/Deep-Research-skills](https://github.com/Weizhena/Deep-Research-skills).
 
-That project is the right home for skills such as `research`, `research-add-items`, `research-add-fields`, `research-deep`, and `research-report`. This plugin intentionally does not bundle those skills; it focuses on paper reading, paper discussion, formatting, and Obsidian note archiving.
+That project is the right home for skills such as `research`, `research-add-items`, `research-add-fields`, `research-deep`, and `research-report`. This plugin intentionally does not bundle those skills; it focuses on paper reading, paper discussion, formatting, and Academic Research note archiving.
 
 ## Repository Layout
 
