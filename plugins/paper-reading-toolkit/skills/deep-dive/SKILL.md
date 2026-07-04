@@ -8,6 +8,10 @@ description: Use when the user asks to read, analyze, discuss, critique, summari
 Use a three-phase workflow: Read, Discuss, Archive. This skill depends on
 `memory-management` for Obsidian note writing rules.
 
+## Local AGENTS.md Coordination
+
+Before using this skill, apply the `AGENTS.md` instructions that are active for the current workspace. Use those local instructions for language, output style, memory policy, Obsidian vault paths, archive rules, and research/project boundaries. If local `AGENTS.md` conflicts with this skill, follow the local rule unless higher-priority system or developer instructions say otherwise.
+
 ## Phase 1: Read
 
 Accept arXiv links, PDFs, paper titles, or project pages. Before reading,

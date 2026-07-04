@@ -14,15 +14,20 @@ all Trellis/OpenSpec content into Obsidian. Use Obsidian for reasoning,
 decisions, lessons, and cross-project knowledge that will matter after the
 current task or change is gone.
 
+## Local AGENTS.md Coordination
+
+Before using this skill, apply the `AGENTS.md` instructions that are active for the current workspace. Use those local instructions for language, output style, memory policy, Obsidian vault paths, archive rules, and research/project boundaries. If local `AGENTS.md` conflicts with this skill, follow the local rule unless higher-priority system or developer instructions say otherwise.
+
 ## Vaults
 
 Resolve vault paths in this order:
 
-1. If `PAPER_READING_OBSIDIAN_VAULT` is set, use it for Academic Research.
-2. Otherwise use `~/Documents/Obsidian/Academic Research/` for Academic Research.
-3. If code-project memory is needed, use `PROJECT_DEVELOPMENT_OBSIDIAN_VAULT`
+1. If the active local `AGENTS.md` defines Obsidian vault paths, use those paths.
+2. If `PAPER_READING_OBSIDIAN_VAULT` is set, use it for Academic Research.
+3. Otherwise use `~/Documents/Obsidian/Academic Research/` for Academic Research.
+4. If code-project memory is needed, use `PROJECT_DEVELOPMENT_OBSIDIAN_VAULT`
    when set; otherwise use `~/Documents/Obsidian/Project Development/`.
-4. If the selected vault does not exist and the user has not asked to create it,
+5. If the selected vault does not exist and the user has not asked to create it,
    ask before writing outside the current workspace.
 
 - Project development: `PROJECT_DEVELOPMENT_OBSIDIAN_VAULT` or `~/Documents/Obsidian/Project Development/`

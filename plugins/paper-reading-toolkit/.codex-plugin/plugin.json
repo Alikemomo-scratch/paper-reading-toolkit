@@ -1,7 +1,7 @@
 {
   "name": "paper-reading-toolkit",
-  "version": "0.1.1",
-  "description": "Codex toolkit for academic paper reading, Markdown formatting, and Obsidian Academic Research archiving.",
+  "version": "0.1.2",
+  "description": "Codex toolkit for AGENTS.md-aware academic paper reading, Markdown formatting, and Obsidian Academic Research archiving.",
   "author": {
     "name": "Alike Momo"
   },
@@ -18,8 +18,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Paper Reading Toolkit",
-    "shortDescription": "Read papers, format summaries, and archive notes to Obsidian.",
-    "longDescription": "A Codex plugin that bundles a paper-reading workflow: deep paper analysis, clearer Markdown output, and Obsidian Academic Research note routing.",
+    "shortDescription": "Read papers with local AGENTS.md rules and archive to Obsidian.",
+    "longDescription": "A Codex plugin that bundles an AGENTS.md-aware paper-reading workflow: deep paper analysis, clearer Markdown output, and Obsidian Academic Research note routing.",
     "developerName": "Alike Momo",
     "category": "Research",
     "capabilities": [
@@ -27,7 +27,7 @@
       "Write"
     ],
     "defaultPrompt": [
-      "Use deep-dive to read this paper and connect it to my notes.",
+      "Use deep-dive with my local AGENTS.md rules to read this paper.",
       "Archive this paper discussion to Obsidian Academic Research.",
       "Use beautify-output to polish this paper summary into clear Markdown."
     ]

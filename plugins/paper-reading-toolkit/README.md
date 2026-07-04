@@ -23,6 +23,13 @@ The plugin bundles:
 
 For structured deep-research workflows, pair this plugin with [Weizhena/Deep-Research-skills](https://github.com/Weizhena/Deep-Research-skills). Skills such as `research`, `research-add-items`, `research-add-fields`, `research-deep`, and `research-report` belong there and are intentionally not bundled here.
 
+
+## Local AGENTS.md Integration
+
+This plugin should be used together with the `AGENTS.md` that applies to the current Codex workspace. Local `AGENTS.md` rules define the user's working style, memory policy, vault paths, and project/research boundaries; these skill instructions only provide the paper-reading mechanics.
+
+If `AGENTS.md` defines language, Obsidian, archive, or research workflow rules, follow those local rules while using `deep-dive`, `memory-management`, and `beautify-output`.
+
 Set `PAPER_READING_OBSIDIAN_VAULT` if your Academic Research vault is not at `~/Documents/Obsidian/Academic Research/`.
 
 ## Typical Prompts
