@@ -5,14 +5,14 @@ This directory is the plugin payload used by the root marketplace.
 Install from the repository root:
 
 ```bash
-codex plugin marketplace add MomoP32/paper-reading-toolkit --ref main
+codex plugin marketplace add Alikemomo-scratch/paper-reading-toolkit --ref main
 codex plugin add paper-reading-toolkit@paper-reading-toolkit
 ```
 
 Or use the root installer:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MomoP32/paper-reading-toolkit/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash
 ```
 
 The plugin bundles:

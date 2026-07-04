@@ -5,7 +5,7 @@ A Codex plugin marketplace for academic paper reading, structured research, Mark
 ## One-Line Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MomoP32/paper-reading-toolkit/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash
 ```
 
 Then start a new Codex thread so the bundled skills are loaded.
@@ -13,7 +13,7 @@ Then start a new Codex thread so the bundled skills are loaded.
 ## Manual Install
 
 ```bash
-codex plugin marketplace add MomoP32/paper-reading-toolkit --ref main
+codex plugin marketplace add Alikemomo-scratch/paper-reading-toolkit --ref main
 codex plugin add paper-reading-toolkit@paper-reading-toolkit
 ```
 

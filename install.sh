@@ -3,7 +3,7 @@ set -euo pipefail
 
 PLUGIN_NAME="paper-reading-toolkit"
 MARKETPLACE_NAME="paper-reading-toolkit"
-SOURCE="${PAPER_READING_TOOLKIT_SOURCE:-MomoP32/paper-reading-toolkit}"
+SOURCE="${PAPER_READING_TOOLKIT_SOURCE:-Alikemomo-scratch/paper-reading-toolkit}"
 REF="${PAPER_READING_TOOLKIT_REF:-main}"
 
 if ! command -v codex >/dev/null 2>&1; then
