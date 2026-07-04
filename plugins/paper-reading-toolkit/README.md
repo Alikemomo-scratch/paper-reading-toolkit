@@ -4,26 +4,31 @@ This directory is the plugin payload used by the root marketplace.
 
 Paper Reading Toolkit provides an AGENTS.md-aware paper-reading workflow for Codex:
 
+- `paper-reading-workflow` coordinates setup, reading, discussion, formatting, and archiving.
 - `deep-dive` reads, discusses, critiques, and prepares paper archives.
 - `memory-management` writes durable Markdown notes to the configured Obsidian vault.
 - `beautify-output` restructures dense paper explanations into clearer Markdown.
 
-## Install
+## One-Click Install
+
+Run from the workspace where you want `AGENTS.md` configured:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash
+```
+
+The installer installs the Codex plugin, initializes Obsidian folders, and updates `AGENTS.md` with a marked Paper Reading Toolkit block.
+
+## Manual Install
 
 ```bash
 codex plugin marketplace add Alikemomo-scratch/paper-reading-toolkit --ref main
 codex plugin add paper-reading-toolkit@paper-reading-toolkit
 ```
 
-Or use the root installer:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash
-```
-
 ## Normal Flow
 
-1. Use `deep-dive` on a paper, PDF, arXiv link, or title.
+1. Use `paper-reading-workflow` or `deep-dive` on a paper, PDF, arXiv link, or title.
 2. The agent first searches the configured Obsidian Academic Research notes for related papers and concepts.
 3. The agent reads the paper and starts the discussion with a structured first pass.
 4. You discuss the paper until the important understanding is clear.
@@ -39,7 +44,11 @@ Set `PAPER_READING_OBSIDIAN_VAULT` if your Academic Research vault is not at `~/
 ## Example Prompts
 
 ```text
-使用 deep-dive 深度阅读这篇论文：https://arxiv.org/abs/xxxx.xxxxx
+使用 paper-reading-workflow 检查并初始化 Paper Reading Toolkit。
+```
+
+```text
+使用 paper-reading-workflow 深度阅读这篇论文：https://arxiv.org/abs/xxxx.xxxxx
 ```
 
 ```text
