@@ -6,7 +6,11 @@ MARKETPLACE_NAME="paper-reading-toolkit"
 SOURCE="${PAPER_READING_TOOLKIT_SOURCE:-Alikemomo-scratch/paper-reading-toolkit}"
 REF="${PAPER_READING_TOOLKIT_REF:-main}"
 VAULT_PATH="${PAPER_READING_OBSIDIAN_VAULT:-$HOME/Documents/Obsidian/Academic Research}"
+INSTALL_TARGET="${1:-${PAPER_READING_INSTALL_TARGET:-codex}}"
+OPENCODE_CONFIG_DIR="${PAPER_READING_OPENCODE_CONFIG_DIR:-${OPENCODE_CONFIG_DIR:-$HOME/.config/opencode}}"
+OPENCODE_INSTALL_DIR="${PAPER_READING_OPENCODE_INSTALL_DIR:-$OPENCODE_CONFIG_DIR/paper-reading-toolkit}"
 SKIP_CODEX="${PAPER_READING_SKIP_CODEX:-0}"
+SKIP_OPENCODE="${PAPER_READING_SKIP_OPENCODE:-0}"
 SKIP_OBSIDIAN_APP="${PAPER_READING_SKIP_OBSIDIAN_APP:-0}"
 SKIP_VAULT="${PAPER_READING_SKIP_VAULT:-0}"
 OPEN_OBSIDIAN="${PAPER_READING_OPEN_OBSIDIAN:-0}"
@@ -17,6 +21,52 @@ log() {
 
 warn() {
   printf '[paper-reading-toolkit] WARN: %s\n' "$1" >&2
+}
+
+usage() {
+  cat <<'EOF_USAGE'
+Usage:
+  install.sh [codex|opencode|all]
+
+Targets:
+  codex     Install the Codex plugin marketplace entry. This is the default.
+  opencode  Install the OpenCode plugin and OpenCode skills.
+  all       Install both Codex and OpenCode support.
+
+Useful environment variables:
+  PAPER_READING_OBSIDIAN_VAULT
+  PAPER_READING_TOOLKIT_SOURCE
+  PAPER_READING_TOOLKIT_REF
+  PAPER_READING_OPENCODE_CONFIG_DIR
+  PAPER_READING_OPENCODE_INSTALL_DIR
+  PAPER_READING_SKIP_CODEX=1
+  PAPER_READING_SKIP_OPENCODE=1
+  PAPER_READING_SKIP_OBSIDIAN_APP=1
+  PAPER_READING_SKIP_VAULT=1
+EOF_USAGE
+}
+
+validate_target() {
+  case "$INSTALL_TARGET" in
+    codex|opencode|all)
+      ;;
+    -h|--help|help)
+      usage
+      exit 0
+      ;;
+    *)
+      usage >&2
+      exit 1
+      ;;
+  esac
+}
+
+should_install_codex() {
+  [ "$INSTALL_TARGET" = "codex" ] || [ "$INSTALL_TARGET" = "all" ]
+}
+
+should_install_opencode() {
+  [ "$INSTALL_TARGET" = "opencode" ] || [ "$INSTALL_TARGET" = "all" ]
 }
 
 install_codex_plugin() {
@@ -44,6 +94,101 @@ install_codex_plugin() {
   fi
 
   codex plugin add "$PLUGIN_NAME@$MARKETPLACE_NAME"
+}
+
+github_url_from_source() {
+  case "$SOURCE" in
+    https://*|git@*|ssh://*)
+      printf '%s\n' "$SOURCE"
+      ;;
+    */*)
+      printf 'https://github.com/%s.git\n' "$SOURCE"
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+replace_symlink() {
+  local target="$1"
+  local link_path="$2"
+
+  if [ -e "$link_path" ] && [ ! -L "$link_path" ]; then
+    echo "Refusing to overwrite non-symlink path: $link_path" >&2
+    exit 1
+  fi
+
+  rm -f "$link_path"
+  ln -s "$target" "$link_path"
+}
+
+install_opencode_plugin() {
+  if [ "$SKIP_OPENCODE" = "1" ]; then
+    log "Skipping OpenCode plugin installation."
+    return
+  fi
+
+  if ! command -v opencode >/dev/null 2>&1; then
+    warn "OpenCode was not found in PATH. Installing files anyway under: $OPENCODE_CONFIG_DIR"
+  fi
+
+  mkdir -p "$OPENCODE_CONFIG_DIR"
+
+  case "$SOURCE" in
+    /*|./*|../*)
+      local source_path
+      source_path="$(cd "$SOURCE" && pwd)"
+      if [ "$source_path" != "$OPENCODE_INSTALL_DIR" ]; then
+        mkdir -p "$OPENCODE_INSTALL_DIR"
+        cp -R "$source_path/.opencode" "$OPENCODE_INSTALL_DIR/"
+        cp -R "$source_path/plugins" "$OPENCODE_INSTALL_DIR/"
+        cp "$source_path/README.md" "$OPENCODE_INSTALL_DIR/"
+        cp "$source_path/LICENSE" "$OPENCODE_INSTALL_DIR/" 2>/dev/null || true
+      fi
+      ;;
+    *)
+      if ! command -v git >/dev/null 2>&1; then
+        echo "Git is required to install Paper Reading Toolkit for OpenCode." >&2
+        exit 1
+      fi
+
+      local git_url
+      git_url="$(github_url_from_source)"
+
+      if [ -d "$OPENCODE_INSTALL_DIR/.git" ]; then
+        git -C "$OPENCODE_INSTALL_DIR" fetch --quiet origin "$REF"
+        git -C "$OPENCODE_INSTALL_DIR" checkout --quiet "$REF"
+        git -C "$OPENCODE_INSTALL_DIR" pull --ff-only --quiet origin "$REF" || true
+      elif [ -e "$OPENCODE_INSTALL_DIR" ]; then
+        echo "OpenCode install path exists but is not a Git checkout: $OPENCODE_INSTALL_DIR" >&2
+        echo "Set PAPER_READING_OPENCODE_INSTALL_DIR to another path or move the existing directory." >&2
+        exit 1
+      else
+        git clone --quiet --depth 1 --branch "$REF" "$git_url" "$OPENCODE_INSTALL_DIR"
+      fi
+      ;;
+  esac
+
+  local plugin_file="$OPENCODE_INSTALL_DIR/.opencode/plugins/paper-reading-toolkit.js"
+  local skills_dir="$OPENCODE_INSTALL_DIR/plugins/paper-reading-toolkit/skills"
+
+  if [ ! -f "$plugin_file" ]; then
+    echo "OpenCode plugin file was not found: $plugin_file" >&2
+    exit 1
+  fi
+
+  if [ ! -d "$skills_dir" ]; then
+    echo "OpenCode skills directory was not found: $skills_dir" >&2
+    exit 1
+  fi
+
+  mkdir -p "$OPENCODE_CONFIG_DIR/plugins" "$OPENCODE_CONFIG_DIR/skills"
+  replace_symlink "$plugin_file" "$OPENCODE_CONFIG_DIR/plugins/paper-reading-toolkit.js"
+  replace_symlink "$skills_dir" "$OPENCODE_CONFIG_DIR/skills/paper-reading-toolkit"
+
+  log "OpenCode plugin registered at: $OPENCODE_CONFIG_DIR/plugins/paper-reading-toolkit.js"
+  log "OpenCode skills linked at: $OPENCODE_CONFIG_DIR/skills/paper-reading-toolkit"
 }
 
 install_obsidian_app() {
@@ -137,7 +282,16 @@ maybe_open_obsidian() {
   esac
 }
 
-install_codex_plugin
+validate_target
+
+if should_install_codex; then
+  install_codex_plugin
+fi
+
+if should_install_opencode; then
+  install_opencode_plugin
+fi
+
 install_obsidian_app
 configure_obsidian_vault
 maybe_open_obsidian
@@ -147,9 +301,25 @@ cat <<EOF_DONE
 Paper Reading Toolkit setup complete.
 
 Installed/updated:
-- Codex plugin: $PLUGIN_NAME@$MARKETPLACE_NAME
+- Target: $INSTALL_TARGET
 - Obsidian vault: $VAULT_PATH
+EOF_DONE
 
-Start a new Codex thread so the plugin skills are loaded.
+if should_install_codex; then
+  cat <<EOF_CODEX
+- Codex plugin: $PLUGIN_NAME@$MARKETPLACE_NAME
+EOF_CODEX
+fi
+
+if should_install_opencode; then
+  cat <<EOF_OPENCODE
+- OpenCode plugin: $OPENCODE_CONFIG_DIR/plugins/paper-reading-toolkit.js
+- OpenCode skills: $OPENCODE_CONFIG_DIR/skills/paper-reading-toolkit
+EOF_OPENCODE
+fi
+
+cat <<EOF_DONE
+
+Restart Codex or OpenCode so the plugin skills are loaded.
 Use deep-dive as the entrypoint for paper reading. Memory First is built into deep-dive.
 EOF_DONE

@@ -1,6 +1,6 @@
 # Paper Reading Toolkit
 
-Paper Reading Toolkit is a Codex plugin marketplace for academic paper reading. It gives Codex a lightweight framework that can install the paper-reading plugin, prepare Obsidian, read a paper, connect it to existing notes, discuss the paper with you, and archive the final understanding back into your configured Obsidian vault.
+Paper Reading Toolkit is a Codex and OpenCode toolkit for academic paper reading. It installs the paper-reading workflow, prepares Obsidian, reads a paper, connects it to existing notes, discusses the paper with you, and archives the final understanding back into your configured Obsidian vault.
 
 The runtime entrypoint is intentionally simple: use `deep-dive`. There is no separate orchestration skill. Memory First retrieval is built into `deep-dive`; `memory-management` handles durable Academic Research notes; `beautify-output` makes dense explanations easier to scan.
 
@@ -12,19 +12,40 @@ The framework does three things well:
 
 ## One-Click Install
 
-Run the installer:
+Install for Codex:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash
 ```
 
-The installer does three things:
+Install for OpenCode:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install-opencode.sh | bash
+```
+
+Equivalent explicit targets:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash -s -- codex
+curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash -s -- opencode
+curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash -s -- all
+```
+
+The Codex installer does three things:
 
 1. Installs or upgrades the Codex plugin marketplace entry.
 2. Installs Obsidian when supported by the current OS/package manager.
 3. Creates the Academic Research vault folders and MOC file.
 
-Then start a new Codex thread so the bundled skills are loaded.
+The OpenCode installer:
+
+1. Clones or updates this toolkit under `~/.config/opencode/paper-reading-toolkit`.
+2. Registers the OpenCode plugin at `~/.config/opencode/plugins/paper-reading-toolkit.js`.
+3. Links skills at `~/.config/opencode/skills/paper-reading-toolkit`.
+4. Installs Obsidian when supported and creates the Academic Research vault folders.
+
+Then restart Codex or OpenCode so the bundled skills are loaded.
 
 ## Install Options
 
@@ -32,6 +53,9 @@ Use these environment variables for non-default paths or CI-style installs:
 
 ```bash
 export PAPER_READING_OBSIDIAN_VAULT="/absolute/path/to/Academic Research"
+export PAPER_READING_INSTALL_TARGET="codex" # codex | opencode | all
+export PAPER_READING_OPENCODE_CONFIG_DIR="$HOME/.config/opencode"
+export PAPER_READING_OPENCODE_INSTALL_DIR="$HOME/.config/opencode/paper-reading-toolkit"
 export PAPER_READING_SKIP_OBSIDIAN_APP=1
 export PAPER_READING_SKIP_VAULT=1
 ```
@@ -92,7 +116,7 @@ In short: `deep-dive` reads and discusses, `memory-management` persists, and `be
 Set up the framework:
 
 ```text
-帮我检查 Paper Reading Toolkit 是否配置好，包括 Codex 插件和 Obsidian vault。
+帮我检查 Paper Reading Toolkit 是否配置好，包括插件和 Obsidian vault。
 ```
 
 Read a paper:
@@ -141,7 +165,9 @@ That project is the right home for skills such as `research`, `research-add-item
 
 ```text
 .agents/plugins/marketplace.json
+.opencode/plugins/paper-reading-toolkit.js
 install.sh
+install-opencode.sh
 plugins/paper-reading-toolkit/
   .codex-plugin/plugin.json
   skills/

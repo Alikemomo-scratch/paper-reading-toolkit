@@ -1,8 +1,8 @@
 # Paper Reading Toolkit Plugin
 
-This directory is the plugin payload used by the root marketplace.
+This directory is the plugin payload used by the Codex marketplace and the OpenCode installer.
 
-Paper Reading Toolkit provides a paper-reading workflow for Codex:
+Paper Reading Toolkit provides a paper-reading workflow for Codex and OpenCode:
 
 - `deep-dive` is the entrypoint for reading, discussing, critiquing, Memory First retrieval, and preparing paper archives.
 - `memory-management` writes durable Academic Research Markdown notes to the configured Obsidian vault.
@@ -12,11 +12,21 @@ There is intentionally no separate orchestration skill. Use `deep-dive` directly
 
 ## One-Click Install
 
+Codex:
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash
 ```
 
-The installer installs the Codex plugin and initializes Obsidian folders.
+OpenCode:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install-opencode.sh | bash
+```
+
+The Codex installer installs the Codex plugin and initializes Obsidian folders.
+The OpenCode installer registers `.opencode/plugins/paper-reading-toolkit.js`
+and links the skills under `~/.config/opencode/skills/paper-reading-toolkit`.
 
 ## Manual Install
 
