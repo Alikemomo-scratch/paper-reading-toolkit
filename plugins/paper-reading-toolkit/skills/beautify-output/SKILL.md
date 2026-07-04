@@ -7,10 +7,6 @@ description: Use when a user asks for polished, beautified, highlighted, section
 
 Use this skill to turn a dense answer into a readable, high-signal Markdown response. Preserve the substance; improve scanability, emphasis, and sectioning.
 
-## Local AGENTS.md Coordination
-
-Before using this skill, apply the `AGENTS.md` instructions that are active for the current workspace. Use those local instructions for language, output style, memory policy, Obsidian vault paths, archive rules, and research/project boundaries. If local `AGENTS.md` conflicts with this skill, follow the local rule unless higher-priority system or developer instructions say otherwise.
-
 ## Core Pattern
 
 Use Chinese by default unless the user asks otherwise.

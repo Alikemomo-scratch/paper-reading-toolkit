@@ -1,31 +1,28 @@
 # Paper Reading Toolkit
 
-Paper Reading Toolkit is a Codex plugin marketplace for academic paper reading. It gives Codex a lightweight framework that can install the paper-reading workflow, prepare Obsidian, configure local `AGENTS.md`, read a paper, connect it to existing notes, discuss the paper with you, and archive the final understanding back into your configured Obsidian vault.
+Paper Reading Toolkit is a Codex plugin marketplace for academic paper reading. It gives Codex a lightweight framework that can install the paper-reading plugin, prepare Obsidian, read a paper, connect it to existing notes, discuss the paper with you, and archive the final understanding back into your configured Obsidian vault.
 
-The runtime entrypoint is intentionally simple: use `deep-dive`. There is no separate orchestration skill. `deep-dive` starts the paper workflow; `memory-management` handles durable Obsidian notes; `beautify-output` makes dense explanations easier to scan.
+The runtime entrypoint is intentionally simple: use `deep-dive`. There is no separate orchestration skill. Memory First retrieval is built into `deep-dive`; `memory-management` handles durable Obsidian notes; `beautify-output` makes dense explanations easier to scan.
 
 The framework does three things well:
 
-1. `deep-dive` handles paper reading, critique, discussion, and archive preparation.
+1. `deep-dive` handles paper reading, critique, discussion, Memory First retrieval, and archive preparation.
 2. `memory-management` handles durable Obsidian Markdown notes and vault routing.
 3. `beautify-output` makes dense paper explanations easier to scan without deleting substance.
 
-It is also `AGENTS.md`-aware. Your local `AGENTS.md` remains the place for Memory First rules, language preference, vault paths, archive conventions, memory boundaries, and project/research boundaries. The plugin supplies the paper-reading mechanics; your local instructions supply the house style.
-
 ## One-Click Install
 
-Run this from the workspace where you want the local `AGENTS.md` configured:
+Run the installer:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash
 ```
 
-The installer does four things:
+The installer does three things:
 
 1. Installs or upgrades the Codex plugin marketplace entry.
 2. Installs Obsidian when supported by the current OS/package manager.
 3. Creates the Academic Research vault folders and MOC file.
-4. Creates or updates a marked Paper Reading Toolkit block in `AGENTS.md`, including Memory First guidance for paper work.
 
 Then start a new Codex thread so the bundled skills are loaded.
 
@@ -35,10 +32,8 @@ Use these environment variables for non-default paths or CI-style installs:
 
 ```bash
 export PAPER_READING_OBSIDIAN_VAULT="/absolute/path/to/Academic Research"
-export PAPER_READING_AGENTS_PATH="/absolute/path/to/AGENTS.md"
 export PAPER_READING_SKIP_OBSIDIAN_APP=1
 export PAPER_READING_SKIP_VAULT=1
-export PAPER_READING_SKIP_AGENTS=1
 ```
 
 Manual install without setup:
@@ -75,16 +70,16 @@ The installer creates:
 10 - Knowledge/_概念/
 ```
 
-If your local `AGENTS.md` defines Obsidian vault paths or archive rules, those local rules should be treated as the source of truth.
+If your vault is elsewhere, set `PAPER_READING_OBSIDIAN_VAULT` before running the installer or before starting Codex.
 
 ## How The Workflow Works
 
 The normal flow is:
 
 1. Start with `deep-dive`.
-2. Before reading the paper, apply Memory First: decide whether existing Obsidian memory is relevant.
-3. Search the configured Academic Research notes for exact matches and related concepts.
-4. Read the paper and give an initial structured view: summary, core method, links to existing knowledge, and first impressions.
+2. Before reading the paper, `deep-dive` applies Memory First from its own skill instructions.
+3. It searches the configured Academic Research notes for exact paper matches and related concepts.
+4. It reads the paper and gives an initial structured view: summary, core method, links to existing knowledge, and first impressions.
 5. Discuss the paper with the agent. This is where the useful understanding usually forms: model structure, data flow, training objective, assumptions, weak claims, related work, and open questions.
 6. When the discussion is mature, ask the agent to archive the note.
 7. The agent uses `memory-management` to write or update a Markdown note in the configured Obsidian vault and update the relevant MOC.
@@ -97,7 +92,7 @@ In short: `deep-dive` reads and discusses, `memory-management` persists, and `be
 Set up the framework:
 
 ```text
-帮我检查 Paper Reading Toolkit 是否配置好，包括 Obsidian 和 AGENTS.md。
+帮我检查 Paper Reading Toolkit 是否配置好，包括 Codex 插件和 Obsidian vault。
 ```
 
 Read a paper:
@@ -136,34 +131,6 @@ Polish the output:
 用 beautify-output 把这份论文总结重新整理成重点清晰的 Markdown。
 ```
 
-## Local AGENTS.md Integration
-
-Priority order:
-
-1. System/developer/Codex safety instructions.
-2. The applicable local `AGENTS.md` files for the current workspace.
-3. This plugin's skill instructions.
-
-The installer writes an idempotent block between these markers:
-
-```text
-<!-- BEGIN PAPER_READING_TOOLKIT -->
-<!-- END PAPER_READING_TOOLKIT -->
-```
-
-Use `AGENTS.md` for durable local rules such as:
-
-- Memory First behavior
-- language preference
-- Obsidian vault paths
-- paper note structure
-- archive triggers
-- memory boundaries
-- Trellis/OpenSpec boundaries
-- project finish rules
-
-A starter snippet is available at [`AGENTS.paper-reading.example.md`](./AGENTS.paper-reading.example.md). Copy the relevant parts into your own workspace `AGENTS.md`; the installer does not overwrite unrelated local agent instructions.
-
 ## Recommended Pairing
 
 For structured benchmark, market, or literature research, use this plugin together with [Weizhena/Deep-Research-skills](https://github.com/Weizhena/Deep-Research-skills).
@@ -174,7 +141,6 @@ That project is the right home for skills such as `research`, `research-add-item
 
 ```text
 .agents/plugins/marketplace.json
-AGENTS.paper-reading.example.md
 install.sh
 plugins/paper-reading-toolkit/
   .codex-plugin/plugin.json

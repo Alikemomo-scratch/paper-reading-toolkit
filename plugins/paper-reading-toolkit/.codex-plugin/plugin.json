@@ -1,7 +1,7 @@
 {
   "name": "paper-reading-toolkit",
-  "version": "0.2.1",
-  "description": "Codex toolkit for one-click AGENTS.md-aware academic paper reading setup, deep-dive entrypoint, Markdown formatting, and Obsidian Academic Research archiving.",
+  "version": "0.2.2",
+  "description": "Codex toolkit for one-click academic paper reading setup, deep-dive Memory First retrieval, Markdown formatting, and Obsidian Academic Research archiving.",
   "author": {
     "name": "Alike Momo"
   },
@@ -12,7 +12,6 @@
     "paper-reading",
     "academic-research",
     "obsidian",
-    "agents-md",
     "arxiv",
     "deep-dive"
   ],
@@ -20,7 +19,7 @@
   "interface": {
     "displayName": "Paper Reading Toolkit",
     "shortDescription": "Read papers with deep-dive and Obsidian.",
-    "longDescription": "A Codex plugin that uses deep-dive as the paper-reading entrypoint, with one-click AGENTS.md-aware setup, clearer Markdown output, and Obsidian Academic Research note routing.",
+    "longDescription": "A Codex plugin that uses deep-dive as the paper-reading entrypoint, with built-in Memory First retrieval, clearer Markdown output, and Obsidian Academic Research note routing.",
     "developerName": "Alike Momo",
     "category": "Research",
     "capabilities": [

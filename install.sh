@@ -6,11 +6,9 @@ MARKETPLACE_NAME="paper-reading-toolkit"
 SOURCE="${PAPER_READING_TOOLKIT_SOURCE:-Alikemomo-scratch/paper-reading-toolkit}"
 REF="${PAPER_READING_TOOLKIT_REF:-main}"
 VAULT_PATH="${PAPER_READING_OBSIDIAN_VAULT:-$HOME/Documents/Obsidian/Academic Research}"
-AGENTS_PATH="${PAPER_READING_AGENTS_PATH:-$PWD/AGENTS.md}"
 SKIP_CODEX="${PAPER_READING_SKIP_CODEX:-0}"
 SKIP_OBSIDIAN_APP="${PAPER_READING_SKIP_OBSIDIAN_APP:-0}"
 SKIP_VAULT="${PAPER_READING_SKIP_VAULT:-0}"
-SKIP_AGENTS="${PAPER_READING_SKIP_AGENTS:-0}"
 OPEN_OBSIDIAN="${PAPER_READING_OPEN_OBSIDIAN:-0}"
 
 log() {
@@ -122,57 +120,6 @@ EOF_MOC
   log "Obsidian vault initialized at: $VAULT_PATH"
 }
 
-configure_agents_md() {
-  if [ "$SKIP_AGENTS" = "1" ]; then
-    log "Skipping AGENTS.md configuration."
-    return
-  fi
-
-  mkdir -p "$(dirname "$AGENTS_PATH")"
-  touch "$AGENTS_PATH"
-
-  local tmp
-  tmp="$(mktemp)"
-  awk '
-    /<!-- BEGIN PAPER_READING_TOOLKIT -->/ {skip=1; next}
-    /<!-- END PAPER_READING_TOOLKIT -->/ {skip=0; next}
-    skip != 1 {print}
-  ' "$AGENTS_PATH" > "$tmp"
-  cp "$tmp" "$AGENTS_PATH"
-  rm -f "$tmp"
-
-  if [ -s "$AGENTS_PATH" ]; then
-    printf '\n' >> "$AGENTS_PATH"
-  fi
-
-  cat >> "$AGENTS_PATH" <<EOF_AGENTS
-<!-- BEGIN PAPER_READING_TOOLKIT -->
-## Paper Reading Toolkit
-
-Use the Paper Reading Toolkit for academic paper reading, discussion, Markdown cleanup, and Obsidian archiving.
-
-### Memory First
-
-At the start of each paper task, silently evaluate whether durable memory is relevant. Use \`memory-management\` when the task involves an existing paper, prior discussion, research topic, Obsidian notes, or an explicit request to remember/archive something.
-
-Durable academic memory lives only in Obsidian Markdown files. Use this Academic Research vault unless a higher-priority local instruction says otherwise: \`$VAULT_PATH\`.
-
-### Paper Workflow
-
-- Treat \`deep-dive\` as the primary entrypoint for paper reading. Do not add an extra orchestration skill layer.
-- Before reading, search the configured Academic Research vault for exact paper matches and related concept notes.
-- During discussion, explain mechanisms, model structure, data flow, training objective, design rationale, evidence, limits, and links to existing notes.
-- When the user asks to archive/save/remember the discussion, use \`memory-management\` to write or update the Obsidian note.
-- Use \`beautify-output\` to make dense paper explanations easier to scan without dropping substance.
-- Keep paper notes, formulas, concept notes, and research discussion in the academic workflow.
-- Do not route Trellis/OpenSpec implementation task state into Academic Research unless the user explicitly asks to archive academic content.
-- For structured benchmark, market, or literature research, use Weizhena/Deep-Research-skills separately; this plugin intentionally does not bundle \`research\`, \`research-add-items\`, \`research-add-fields\`, \`research-deep\`, or \`research-report\`.
-<!-- END PAPER_READING_TOOLKIT -->
-EOF_AGENTS
-
-  log "AGENTS.md configured at: $AGENTS_PATH"
-}
-
 maybe_open_obsidian() {
   if [ "$OPEN_OBSIDIAN" != "1" ]; then
     return
@@ -193,7 +140,6 @@ maybe_open_obsidian() {
 install_codex_plugin
 install_obsidian_app
 configure_obsidian_vault
-configure_agents_md
 maybe_open_obsidian
 
 cat <<EOF_DONE
@@ -203,8 +149,7 @@ Paper Reading Toolkit setup complete.
 Installed/updated:
 - Codex plugin: $PLUGIN_NAME@$MARKETPLACE_NAME
 - Obsidian vault: $VAULT_PATH
-- AGENTS.md: $AGENTS_PATH
 
 Start a new Codex thread so the plugin skills are loaded.
-Use deep-dive as the entrypoint for paper reading.
+Use deep-dive as the entrypoint for paper reading. Memory First is built into deep-dive.
 EOF_DONE

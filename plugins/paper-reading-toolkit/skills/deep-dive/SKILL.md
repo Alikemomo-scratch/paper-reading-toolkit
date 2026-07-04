@@ -8,17 +8,13 @@ description: Primary entrypoint for Paper Reading Toolkit. Use when the user ask
 Use a three-phase workflow: Read, Discuss, Archive. This skill depends on
 `memory-management` for Obsidian note writing rules.
 
-## Local AGENTS.md Coordination
-
-Before using this skill, apply the `AGENTS.md` instructions that are active for the current workspace. Use those local instructions for language, output style, memory policy, Obsidian vault paths, archive rules, and research/project boundaries. If local `AGENTS.md` conflicts with this skill, follow the local rule unless higher-priority system or developer instructions say otherwise.
-
 ## Memory First
 
 At the start of each paper task, silently evaluate whether durable memory is relevant. For paper reading, it usually is relevant.
 
 Before reading:
 
-1. Resolve the Academic Research vault from local `AGENTS.md`, `PAPER_READING_OBSIDIAN_VAULT`, or `~/Documents/Obsidian/Academic Research/`.
+1. Resolve the Academic Research vault from `PAPER_READING_OBSIDIAN_VAULT` or `~/Documents/Obsidian/Academic Research/`.
 2. Search for exact matches by paper title, arXiv ID, filename, and common abbreviations.
 3. Search for related method/concept notes from the abstract, title, keywords, and user-provided context.
 4. Load at most 1-3 relevant notes or targeted sections before the first answer.

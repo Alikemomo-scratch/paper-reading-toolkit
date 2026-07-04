@@ -2,23 +2,21 @@
 
 This directory is the plugin payload used by the root marketplace.
 
-Paper Reading Toolkit provides an AGENTS.md-aware paper-reading workflow for Codex:
+Paper Reading Toolkit provides a paper-reading workflow for Codex:
 
-- `deep-dive` is the entrypoint for reading, discussing, critiquing, and preparing paper archives.
+- `deep-dive` is the entrypoint for reading, discussing, critiquing, Memory First retrieval, and preparing paper archives.
 - `memory-management` writes durable Markdown notes to the configured Obsidian vault.
 - `beautify-output` restructures dense paper explanations into clearer Markdown.
 
-There is intentionally no separate orchestration skill. Put Memory First and workflow policy in `AGENTS.md`, then use `deep-dive` directly.
+There is intentionally no separate orchestration skill. Use `deep-dive` directly; its skill instructions include the Memory First behavior.
 
 ## One-Click Install
-
-Run from the workspace where you want `AGENTS.md` configured:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Alikemomo-scratch/paper-reading-toolkit/main/install.sh | bash
 ```
 
-The installer installs the Codex plugin, initializes Obsidian folders, and updates `AGENTS.md` with a marked Paper Reading Toolkit block.
+The installer installs the Codex plugin and initializes Obsidian folders.
 
 ## Manual Install
 
@@ -30,15 +28,13 @@ codex plugin add paper-reading-toolkit@paper-reading-toolkit
 ## Normal Flow
 
 1. Use `deep-dive` on a paper, PDF, arXiv link, or title.
-2. Apply Memory First and search the configured Obsidian Academic Research notes for related papers and concepts before reading.
+2. `deep-dive` applies Memory First and searches the configured Obsidian Academic Research notes for related papers and concepts before reading.
 3. The agent reads the paper and starts the discussion with a structured first pass.
 4. You discuss the paper until the important understanding is clear.
 5. Say `归档笔记吧` or ask to archive.
 6. The agent writes or updates the Obsidian note through `memory-management`.
 
-## Local AGENTS.md Integration
-
-This plugin should be used together with the `AGENTS.md` that applies to the current Codex workspace. Local `AGENTS.md` rules define Memory First behavior, language, vault paths, archive conventions, memory policy, and research/project boundaries. These skill instructions provide the mechanics, not a replacement for local policy.
+## Obsidian Vault
 
 Set `PAPER_READING_OBSIDIAN_VAULT` if your Academic Research vault is not at `~/Documents/Obsidian/Academic Research/`.
 

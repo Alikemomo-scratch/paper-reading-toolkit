@@ -14,20 +14,15 @@ all Trellis/OpenSpec content into Obsidian. Use Obsidian for reasoning,
 decisions, lessons, and cross-project knowledge that will matter after the
 current task or change is gone.
 
-## Local AGENTS.md Coordination
-
-Before using this skill, apply the `AGENTS.md` instructions that are active for the current workspace. Use those local instructions for language, output style, memory policy, Obsidian vault paths, archive rules, and research/project boundaries. If local `AGENTS.md` conflicts with this skill, follow the local rule unless higher-priority system or developer instructions say otherwise.
-
 ## Vaults
 
 Resolve vault paths in this order:
 
-1. If the active local `AGENTS.md` defines Obsidian vault paths, use those paths.
-2. If `PAPER_READING_OBSIDIAN_VAULT` is set, use it for Academic Research.
-3. Otherwise use `~/Documents/Obsidian/Academic Research/` for Academic Research.
-4. If code-project memory is needed, use `PROJECT_DEVELOPMENT_OBSIDIAN_VAULT`
+1. If `PAPER_READING_OBSIDIAN_VAULT` is set, use it for Academic Research.
+2. Otherwise use `~/Documents/Obsidian/Academic Research/` for Academic Research.
+3. If code-project memory is needed, use `PROJECT_DEVELOPMENT_OBSIDIAN_VAULT`
    when set; otherwise use `~/Documents/Obsidian/Project Development/`.
-5. If the selected vault does not exist and the user has not asked to create it,
+4. If the selected vault does not exist and the user has not asked to create it,
    ask before writing outside the current workspace.
 
 - Project development: `PROJECT_DEVELOPMENT_OBSIDIAN_VAULT` or `~/Documents/Obsidian/Project Development/`
@@ -157,105 +152,3 @@ workflows keep their existing archive behavior.
 
 If ambiguous, choose based on the future audience. Ask only when routing affects
 where the user will look later.
-
-## Note Principles
-
-- Update over create: update the relevant object note if it exists.
-- One note per real-world object: project, paper, or coherent research topic.
-- Preserve reasoning, not just conclusions: context, alternatives, logic,
-  evidence, and implications.
-- Keep frontmatter keys in English.
-- Write note titles and body content in Chinese by default unless the user asks
-  otherwise.
-- Use Obsidian `[[wikilinks]]` for related concepts and notes.
-- MOCs contain navigation and short summaries, not copied note bodies.
-
-## Required Frontmatter
-
-New durable notes should include:
-
-```markdown
----
-type: project | paper | concept | research-object
-cssclasses:
-  - project
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
-tags:
-  - project
----
-# Title
-```
-
-The first tag must match `type`.
-
-## Project Notes
-
-Useful sections:
-
-- `项目概览`
-- `当前约定`
-- `关键事实`
-- `重要决策`
-- `开发中形成的经验`
-- `Trellis 关联`
-- `OpenSpec 关联`
-- `待办与问题`
-- `相关链接`
-
-## Paper Notes
-
-Paper notes preserve technical content and discussion insights. Include:
-
-- `元信息`
-- `一句话总结`
-- `核心贡献`
-- `问题背景`
-- `方法详解`
-- `关键公式`
-- `关键图表`
-- `实验结果`
-- `我们关心的问题`
-- `讨论出的关键观点`
-- `对我研究的启发`
-- `可复用的方法或框架`
-- `反对意见与疑问`
-- `相关链接`
-
-Formula rules:
-
-- Preserve important formulas in LaTeX `$$` blocks.
-- Put blank lines before and after `$$` blocks.
-- Check variable consistency, symbol conventions, subscripts/superscripts,
-  summation ranges, and key operators.
-- Split long formulas with `aligned`.
-
-## Concept Notes
-
-Academic concept notes live under:
-
-`<Academic Research vault>/10 - Knowledge/_概念/`
-
-Before classifying a new concept, list the existing subdirectories and choose
-the best fit. Create concept notes only for methods, models, datasets,
-simulators/frameworks, and technical concepts.
-
-## MOC Updates
-
-After creating a new note:
-
-- Add a `- [[note-name]]` entry with a short description to the relevant MOC.
-- For concept notes, also update the relevant concept category MOC when present.
-- Keep updates idempotent and avoid rewriting unchanged MOC content.
-
-## Workflow
-
-1. Decide whether the knowledge is durable.
-2. If Trellis/OpenSpec is involved, identify what belongs in repo-local project
-   memory first.
-3. Choose the correct Obsidian vault for durable reasoning or lessons.
-4. Ensure required directories exist.
-5. Inspect the MOC and likely object notes.
-6. Update a matching object note, or create one focused new note.
-7. Add frontmatter, tags, wikilinks, Trellis/OpenSpec references, and MOC links.
-8. Verify the note is retrieval-friendly.
