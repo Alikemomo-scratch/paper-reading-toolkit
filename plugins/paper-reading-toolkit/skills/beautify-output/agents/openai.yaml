@@ -1,0 +1,4 @@
+interface:
+  display_name: "Beautify Output"
+  short_description: "Polish structured Markdown responses"
+  default_prompt: "Use $beautify-output to format this answer with clear sections, emphasis, and concise takeaways."

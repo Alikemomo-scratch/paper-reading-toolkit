@@ -1,0 +1,20 @@
+{
+  "name": "paper-reading-toolkit",
+  "interface": {
+    "displayName": "Paper Reading Toolkit"
+  },
+  "plugins": [
+    {
+      "name": "paper-reading-toolkit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/paper-reading-toolkit"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Research"
+    }
+  ]
+}

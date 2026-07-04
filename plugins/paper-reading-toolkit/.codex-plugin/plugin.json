@@ -1,0 +1,36 @@
+{
+  "name": "paper-reading-toolkit",
+  "version": "0.1.0",
+  "description": "Codex toolkit for academic paper reading, structured research, Markdown formatting, and Obsidian Academic Research archiving.",
+  "author": {
+    "name": "Alike Momo"
+  },
+  "homepage": "https://github.com/MomoP32/paper-reading-toolkit",
+  "repository": "https://github.com/MomoP32/paper-reading-toolkit",
+  "license": "MIT",
+  "keywords": [
+    "paper-reading",
+    "academic-research",
+    "obsidian",
+    "arxiv",
+    "deep-dive"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Paper Reading Toolkit",
+    "shortDescription": "Read papers, run research, and archive notes to Obsidian.",
+    "longDescription": "A Codex plugin that bundles a paper-reading workflow: deep paper analysis, structured research pipelines, clearer Markdown output, and Obsidian Academic Research note routing.",
+    "developerName": "Alike Momo",
+    "category": "Research",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Research"
+    ],
+    "defaultPrompt": [
+      "Use deep-dive to read this paper and connect it to my notes.",
+      "Archive this paper discussion to Obsidian Academic Research.",
+      "Turn these research results into a Chinese Markdown report."
+    ]
+  }
+}
