@@ -1,6 +1,6 @@
 # Paper Reading Toolkit
 
-A Codex plugin marketplace for academic paper reading, structured research, Markdown formatting, and Obsidian-based research notes.
+A Codex plugin marketplace for academic paper reading, Markdown formatting, and Obsidian-based research notes.
 
 ## One-Line Install
 
@@ -21,12 +21,13 @@ codex plugin add paper-reading-toolkit@paper-reading-toolkit
 
 - `deep-dive`: read, discuss, critique, summarize, and archive papers, PDFs, arXiv links, and paper titles.
 - `memory-management`: write durable Markdown notes into an Obsidian vault.
-- `beautify-output`: turn dense answers into clearer, high-signal Markdown.
-- `research`: create structured research outlines.
-- `research-add-items`: add research objects to an existing outline.
-- `research-add-fields`: add fields to an existing research schema.
-- `research-deep`: execute item-by-item deep research into JSON outputs.
-- `research-report`: convert structured JSON results into Chinese Markdown reports.
+- `beautify-output`: turn dense paper/research answers into clearer, high-signal Markdown.
+
+## Recommended Pairing
+
+For structured deep-research workflows, use this plugin together with [Weizhena/Deep-Research-skills](https://github.com/Weizhena/Deep-Research-skills).
+
+That project is the right home for skills such as `research`, `research-add-items`, `research-add-fields`, `research-deep`, and `research-report`. This plugin intentionally does not bundle those skills; it focuses on paper reading, paper discussion, formatting, and Obsidian note archiving.
 
 ## Obsidian Setup
 
@@ -76,12 +77,10 @@ This plugin writes normal Markdown files. No Obsidian community plugin is requir
 ```
 
 ```text
-使用 research 调研 World Action Models 代表工作
-```
-
-```text
 用 beautify-output 把这份论文总结重新整理成重点清晰的 Markdown
 ```
+
+For structured benchmark, market, or literature research, install and use [Weizhena/Deep-Research-skills](https://github.com/Weizhena/Deep-Research-skills) alongside this plugin.
 
 ## Repository Layout
 

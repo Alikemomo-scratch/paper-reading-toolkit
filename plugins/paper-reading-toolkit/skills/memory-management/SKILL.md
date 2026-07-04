@@ -75,8 +75,8 @@ Do not route Trellis tasks, Trellis journals, code project PRDs, or finish-work
 outputs into Academic Research. Do not let Trellis change paper notes, concept
 notes, formula rules, research reports, or Academic Research MOCs.
 
-Academic Research remains governed by the existing `deep-dive`, `research`,
-`research-deep`, `research-report`, and related academic memory rules.
+Academic Research remains governed by `deep-dive`, compatible external research
+skills such as `Weizhena/Deep-Research-skills`, and related academic memory rules.
 
 ## When To Retrieve
 

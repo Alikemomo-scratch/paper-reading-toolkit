@@ -19,8 +19,9 @@ The plugin bundles:
 
 - `deep-dive`: read, discuss, critique, and archive papers, PDFs, arXiv links, and paper titles.
 - `memory-management`: write durable Markdown notes into an Obsidian vault.
-- `beautify-output`: turn dense research answers into clearer Markdown.
-- `research`, `research-add-items`, `research-add-fields`, `research-deep`, `research-report`: run structured research from outline to JSON results to Chinese report.
+- `beautify-output`: turn dense paper/research answers into clearer Markdown.
+
+For structured deep-research workflows, pair this plugin with [Weizhena/Deep-Research-skills](https://github.com/Weizhena/Deep-Research-skills). Skills such as `research`, `research-add-items`, `research-add-fields`, `research-deep`, and `research-report` belong there and are intentionally not bundled here.
 
 Set `PAPER_READING_OBSIDIAN_VAULT` if your Academic Research vault is not at `~/Documents/Obsidian/Academic Research/`.
 
@@ -32,10 +33,6 @@ Set `PAPER_READING_OBSIDIAN_VAULT` if your Academic Research vault is not at `~/
 
 ```text
 归档笔记吧
-```
-
-```text
-使用 research 调研 World Action Models 代表工作
 ```
 
 ```text
