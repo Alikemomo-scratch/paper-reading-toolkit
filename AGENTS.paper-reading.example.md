@@ -7,15 +7,15 @@ Copy the parts you need into your local workspace `AGENTS.md`. Do not treat this
 
 Use the Paper Reading Toolkit together with the local `AGENTS.md` policy. Local instructions control language, memory routing, vault paths, and project/research boundaries. The plugin only supplies paper-reading, formatting, and Obsidian archive mechanics.
 
-### Setup
+### Memory First
 
-- Use `paper-reading-workflow` when configuring or checking the toolkit.
-- The installer may initialize Obsidian folders and update this marked block in `AGENTS.md`.
-- If the Academic Research vault is not at the default path, set `PAPER_READING_OBSIDIAN_VAULT` or write the exact vault path here.
+At the start of each paper task, silently evaluate whether durable memory is relevant. Use `memory-management` when the task involves an existing paper, prior discussion, research topic, Obsidian notes, or an explicit request to remember/archive something.
+
+Durable academic memory lives only in Obsidian Markdown files. Use the configured Academic Research vault unless a higher-priority local instruction says otherwise.
 
 ### Paper Workflow
 
-- Use `paper-reading-workflow` or `deep-dive` when reading, discussing, critiquing, summarizing, or archiving academic papers, PDFs, arXiv links, or paper titles.
+- Treat `deep-dive` as the primary entrypoint for paper reading. Do not add an extra orchestration skill layer.
 - Before reading, search the configured Academic Research vault for exact matches and related concept notes.
 - Do not stop at a short abstract summary unless explicitly requested; prefer mechanism, structure, data flow, training objective, design rationale, evidence, limitations, and links to existing notes.
 - Use `beautify-output` when the answer should be easier to scan while preserving substance.

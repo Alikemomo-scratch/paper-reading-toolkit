@@ -4,10 +4,11 @@ This directory is the plugin payload used by the root marketplace.
 
 Paper Reading Toolkit provides an AGENTS.md-aware paper-reading workflow for Codex:
 
-- `paper-reading-workflow` coordinates setup, reading, discussion, formatting, and archiving.
-- `deep-dive` reads, discusses, critiques, and prepares paper archives.
+- `deep-dive` is the entrypoint for reading, discussing, critiquing, and preparing paper archives.
 - `memory-management` writes durable Markdown notes to the configured Obsidian vault.
 - `beautify-output` restructures dense paper explanations into clearer Markdown.
+
+There is intentionally no separate orchestration skill. Put Memory First and workflow policy in `AGENTS.md`, then use `deep-dive` directly.
 
 ## One-Click Install
 
@@ -28,8 +29,8 @@ codex plugin add paper-reading-toolkit@paper-reading-toolkit
 
 ## Normal Flow
 
-1. Use `paper-reading-workflow` or `deep-dive` on a paper, PDF, arXiv link, or title.
-2. The agent first searches the configured Obsidian Academic Research notes for related papers and concepts.
+1. Use `deep-dive` on a paper, PDF, arXiv link, or title.
+2. Apply Memory First and search the configured Obsidian Academic Research notes for related papers and concepts before reading.
 3. The agent reads the paper and starts the discussion with a structured first pass.
 4. You discuss the paper until the important understanding is clear.
 5. Say `归档笔记吧` or ask to archive.
@@ -37,18 +38,14 @@ codex plugin add paper-reading-toolkit@paper-reading-toolkit
 
 ## Local AGENTS.md Integration
 
-This plugin should be used together with the `AGENTS.md` that applies to the current Codex workspace. Local `AGENTS.md` rules define language, vault paths, archive conventions, memory policy, and research/project boundaries. These skill instructions provide the mechanics, not a replacement for local policy.
+This plugin should be used together with the `AGENTS.md` that applies to the current Codex workspace. Local `AGENTS.md` rules define Memory First behavior, language, vault paths, archive conventions, memory policy, and research/project boundaries. These skill instructions provide the mechanics, not a replacement for local policy.
 
 Set `PAPER_READING_OBSIDIAN_VAULT` if your Academic Research vault is not at `~/Documents/Obsidian/Academic Research/`.
 
 ## Example Prompts
 
 ```text
-使用 paper-reading-workflow 检查并初始化 Paper Reading Toolkit。
-```
-
-```text
-使用 paper-reading-workflow 深度阅读这篇论文：https://arxiv.org/abs/xxxx.xxxxx
+使用 deep-dive 深度阅读这篇论文：https://arxiv.org/abs/xxxx.xxxxx
 ```
 
 ```text

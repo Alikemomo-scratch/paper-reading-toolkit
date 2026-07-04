@@ -2,14 +2,15 @@
 
 Paper Reading Toolkit is a Codex plugin marketplace for academic paper reading. It gives Codex a lightweight framework that can install the paper-reading workflow, prepare Obsidian, configure local `AGENTS.md`, read a paper, connect it to existing notes, discuss the paper with you, and archive the final understanding back into your configured Obsidian vault.
 
-The framework is intentionally small. It does four things well:
+The runtime entrypoint is intentionally simple: use `deep-dive`. There is no separate orchestration skill. `deep-dive` starts the paper workflow; `memory-management` handles durable Obsidian notes; `beautify-output` makes dense explanations easier to scan.
 
-1. `paper-reading-workflow` coordinates setup and the end-to-end paper workflow.
-2. `deep-dive` handles paper reading, critique, discussion, and archive preparation.
-3. `memory-management` handles durable Obsidian Markdown notes and vault routing.
-4. `beautify-output` makes dense paper explanations easier to scan without deleting substance.
+The framework does three things well:
 
-It is also `AGENTS.md`-aware. Your local `AGENTS.md` remains the place for personal workflow rules: language preference, vault paths, archive conventions, memory boundaries, and project/research boundaries. The plugin supplies the paper-reading mechanics; your local instructions supply the house style.
+1. `deep-dive` handles paper reading, critique, discussion, and archive preparation.
+2. `memory-management` handles durable Obsidian Markdown notes and vault routing.
+3. `beautify-output` makes dense paper explanations easier to scan without deleting substance.
+
+It is also `AGENTS.md`-aware. Your local `AGENTS.md` remains the place for Memory First rules, language preference, vault paths, archive conventions, memory boundaries, and project/research boundaries. The plugin supplies the paper-reading mechanics; your local instructions supply the house style.
 
 ## One-Click Install
 
@@ -24,7 +25,7 @@ The installer does four things:
 1. Installs or upgrades the Codex plugin marketplace entry.
 2. Installs Obsidian when supported by the current OS/package manager.
 3. Creates the Academic Research vault folders and MOC file.
-4. Creates or updates a marked Paper Reading Toolkit block in `AGENTS.md`.
+4. Creates or updates a marked Paper Reading Toolkit block in `AGENTS.md`, including Memory First guidance for paper work.
 
 Then start a new Codex thread so the bundled skills are loaded.
 
@@ -80,28 +81,29 @@ If your local `AGENTS.md` defines Obsidian vault paths or archive rules, those l
 
 The normal flow is:
 
-1. Start with `paper-reading-workflow` or directly with `deep-dive`.
-2. Before reading the paper, the agent searches the configured Academic Research notes for exact matches and related concepts.
-3. The agent reads the paper and gives an initial structured view: summary, core method, links to existing knowledge, and first impressions.
-4. You discuss the paper with the agent. This is where the useful understanding usually forms: model structure, data flow, training objective, assumptions, weak claims, related work, and open questions.
-5. When the discussion is mature, ask the agent to archive the note.
-6. The agent uses `memory-management` to write or update a Markdown note in the configured Obsidian vault and update the relevant MOC.
-7. Use `beautify-output` when you want the explanation or final note draft reorganized into clearer Markdown.
+1. Start with `deep-dive`.
+2. Before reading the paper, apply Memory First: decide whether existing Obsidian memory is relevant.
+3. Search the configured Academic Research notes for exact matches and related concepts.
+4. Read the paper and give an initial structured view: summary, core method, links to existing knowledge, and first impressions.
+5. Discuss the paper with the agent. This is where the useful understanding usually forms: model structure, data flow, training objective, assumptions, weak claims, related work, and open questions.
+6. When the discussion is mature, ask the agent to archive the note.
+7. The agent uses `memory-management` to write or update a Markdown note in the configured Obsidian vault and update the relevant MOC.
+8. Use `beautify-output` when you want the explanation or final note draft reorganized into clearer Markdown.
 
-In short: `paper-reading-workflow` coordinates, `deep-dive` reads and discusses, `memory-management` persists, and `beautify-output` polishes.
+In short: `deep-dive` reads and discusses, `memory-management` persists, and `beautify-output` polishes.
 
 ## Usage Examples
 
-Set up the whole framework:
+Set up the framework:
 
 ```text
-使用 paper-reading-workflow 帮我检查 Paper Reading Toolkit 是否配置好，包括 Obsidian 和 AGENTS.md。
+帮我检查 Paper Reading Toolkit 是否配置好，包括 Obsidian 和 AGENTS.md。
 ```
 
 Read a paper:
 
 ```text
-使用 paper-reading-workflow 深度阅读这篇论文：https://arxiv.org/abs/xxxx.xxxxx
+使用 deep-dive 深度阅读这篇论文：https://arxiv.org/abs/xxxx.xxxxx
 ```
 
 Read a local PDF:
@@ -151,6 +153,7 @@ The installer writes an idempotent block between these markers:
 
 Use `AGENTS.md` for durable local rules such as:
 
+- Memory First behavior
 - language preference
 - Obsidian vault paths
 - paper note structure
@@ -176,7 +179,6 @@ install.sh
 plugins/paper-reading-toolkit/
   .codex-plugin/plugin.json
   skills/
-    paper-reading-workflow/
     deep-dive/
     memory-management/
     beautify-output/

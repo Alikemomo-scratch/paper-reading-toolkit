@@ -151,12 +151,19 @@ configure_agents_md() {
 
 Use the Paper Reading Toolkit for academic paper reading, discussion, Markdown cleanup, and Obsidian archiving.
 
-- Start paper work with \`paper-reading-workflow\` or \`deep-dive\`.
+### Memory First
+
+At the start of each paper task, silently evaluate whether durable memory is relevant. Use \`memory-management\` when the task involves an existing paper, prior discussion, research topic, Obsidian notes, or an explicit request to remember/archive something.
+
+Durable academic memory lives only in Obsidian Markdown files. Use this Academic Research vault unless a higher-priority local instruction says otherwise: \`$VAULT_PATH\`.
+
+### Paper Workflow
+
+- Treat \`deep-dive\` as the primary entrypoint for paper reading. Do not add an extra orchestration skill layer.
 - Before reading, search the configured Academic Research vault for exact paper matches and related concept notes.
 - During discussion, explain mechanisms, model structure, data flow, training objective, design rationale, evidence, limits, and links to existing notes.
 - When the user asks to archive/save/remember the discussion, use \`memory-management\` to write or update the Obsidian note.
 - Use \`beautify-output\` to make dense paper explanations easier to scan without dropping substance.
-- Academic Research vault: \`$VAULT_PATH\`.
 - Keep paper notes, formulas, concept notes, and research discussion in the academic workflow.
 - Do not route Trellis/OpenSpec implementation task state into Academic Research unless the user explicitly asks to archive academic content.
 - For structured benchmark, market, or literature research, use Weizhena/Deep-Research-skills separately; this plugin intentionally does not bundle \`research\`, \`research-add-items\`, \`research-add-fields\`, \`research-deep\`, or \`research-report\`.
@@ -199,5 +206,5 @@ Installed/updated:
 - AGENTS.md: $AGENTS_PATH
 
 Start a new Codex thread so the plugin skills are loaded.
-Use paper-reading-workflow for the full setup/read/discuss/archive workflow.
+Use deep-dive as the entrypoint for paper reading.
 EOF_DONE

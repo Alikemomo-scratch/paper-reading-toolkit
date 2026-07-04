@@ -1,4 +1,0 @@
-interface:
-  display_name: "Paper Reading Workflow"
-  short_description: "Coordinate setup and paper archiving."
-  default_prompt: "Use $paper-reading-workflow to set up my paper reading toolkit."

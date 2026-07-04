@@ -1,6 +1,6 @@
 ---
 name: deep-dive
-description: Use when the user asks to read, analyze, discuss, critique, summarize, or archive an academic paper, PDF, arXiv link, or paper title.
+description: Primary entrypoint for Paper Reading Toolkit. Use when the user asks to read, analyze, discuss, critique, summarize, or archive an academic paper, PDF, arXiv link, project page, or paper title; includes Memory First retrieval from Obsidian before reading.
 ---
 
 # Deep Dive
@@ -12,17 +12,23 @@ Use a three-phase workflow: Read, Discuss, Archive. This skill depends on
 
 Before using this skill, apply the `AGENTS.md` instructions that are active for the current workspace. Use those local instructions for language, output style, memory policy, Obsidian vault paths, archive rules, and research/project boundaries. If local `AGENTS.md` conflicts with this skill, follow the local rule unless higher-priority system or developer instructions say otherwise.
 
+## Memory First
+
+At the start of each paper task, silently evaluate whether durable memory is relevant. For paper reading, it usually is relevant.
+
+Before reading:
+
+1. Resolve the Academic Research vault from local `AGENTS.md`, `PAPER_READING_OBSIDIAN_VAULT`, or `~/Documents/Obsidian/Academic Research/`.
+2. Search for exact matches by paper title, arXiv ID, filename, and common abbreviations.
+3. Search for related method/concept notes from the abstract, title, keywords, and user-provided context.
+4. Load at most 1-3 relevant notes or targeted sections before the first answer.
+5. If an exact paper note exists, ask whether to update it or start a fresh reading thread.
+
+Do not use non-Obsidian memory stores for durable academic memory.
+
 ## Phase 1: Read
 
-Accept arXiv links, PDFs, paper titles, or project pages. Before reading,
-retrieve related Obsidian context:
-
-1. Search the Academic Research vault for an exact paper or method note.
-2. If an exact match exists, load it and ask whether to update or start fresh.
-3. Search for related methods/concepts from the abstract.
-4. Load up to 3 relevant notes or sections.
-
-Then present:
+Accept arXiv links, PDFs, paper titles, or project pages. Present:
 
 - `一句话总结`
 - `核心方法`
@@ -46,7 +52,7 @@ Retrieve related vault notes silently when new methods, papers, or concepts aris
 ## Phase 3: Archive
 
 Triggered when the user says to save/archive/remember, or when a long rich
-discussion should not be lost.
+discussion should not be lost and the user confirms persistence.
 
 Use `memory-management` to write or update the paper/research-object note.
 Populate both technical sections and discussion sections. Do not leave
@@ -60,4 +66,3 @@ After writing, validate:
 - Formulas and figures/tables are preserved when available.
 - Discussion insights are populated.
 - MOC is updated.
-
